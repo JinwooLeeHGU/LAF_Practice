@@ -36,8 +36,8 @@
 			<beans:ref bean="LoginCheckInterceptor" />
 		</interceptor>
 	</interceptors>
-
-	<beans:bean id="googleConnectionFactory"
+	
+		<beans:bean id="googleConnectionFactory"
 		class="org.springframework.social.google.connect.GoogleConnectionFactory">
 		<beans:constructor-arg
 			value="1091952631277-n44a5kuq13om818ukiqur5o0q9jrluko.apps.googleusercontent.com" />
