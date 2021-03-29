@@ -1,4 +1,4 @@
-package com.gls.laf.user;
+package com.gls.laf;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +14,8 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter {
 			throws Exception {
 		HttpSession session = request.getSession();
 		Object obj = session.getAttribute("login");
+		
+		System.out.println("check contextpath:"+ request.getContextPath());
 		if(obj==null) {
 			response.sendRedirect(request.getContextPath() + "/login/login");
 			return false;
