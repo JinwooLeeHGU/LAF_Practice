@@ -2,7 +2,7 @@ package com.gls.laf.board;
 
 import java.util.List;
 
-import com.gls.winter.page.Pagination;
+//import com.gls.laf.page.Pagination;
 
 public interface BoardService {
 	public int insertBoard(BoardVO vo);

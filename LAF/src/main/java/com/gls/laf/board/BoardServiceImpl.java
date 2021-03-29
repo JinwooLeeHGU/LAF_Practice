@@ -3,7 +3,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.gls.winter.page.Pagination;
+//import com.gls.laf.page.Pagination;
 
 @Service 
 public class BoardServiceImpl implements BoardService{
