@@ -5,6 +5,7 @@
 	<title>Home</title>
 </head>
 <body>
+<jsp:forward page="list.jsp"></jsp:forward>
 <h1>
 	Hello world! This is integrated  
 </h1>

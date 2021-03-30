@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.gls.winter.page.Pagination;
+//import com.gls.laf.page.Pagination;
 
 @Repository
 public class BoardDAO {
