@@ -17,7 +17,6 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <link rel="stylesheet" href="${path}/resouces/css/liststyle.css">
-
 </head>
 <body>
 	<span id="name"> </span>
@@ -74,11 +73,9 @@
 						<div id="deleteButton">
 							<a id="fontcolor" href="javascript:delete_ok('${u.seq}')">Delete</a>
 						</div>
-
 					</div>
 
 				</div>
-
 
 			</div>
 		</c:forEach>

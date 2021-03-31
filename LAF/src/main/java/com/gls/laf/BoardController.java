@@ -1,23 +1,12 @@
 package com.gls.laf;
 
-import java.io.File;
-import java.io.IOException;
-
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gls.laf.board.BoardService;
-import com.gls.laf.board.BoardVO;
 
 
 @Controller
@@ -36,42 +25,7 @@ public class BoardController {
 //	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String boardlist(Model model, 
-			@RequestParam(required = false, defaultValue = "1") int page,
-			@RequestParam(required = false, defaultValue = "1") int range,
-			@RequestParam(required = false, defaultValue = "2") int lost) throws Exception {
-		// 페이징 계산을 위해 Pagination 클래스에 보내야 할 파라미터에는 '현재 페이지'와 '현재 페이지 범위', 그리고 '게시물의 총
-		// 개수'가 있다.
-		// lost의 경우 2가 all / 1이 found / 0이 lost이다.
-
-//		int listCnt = 2;
-//		
-//		// 전체 게시글 개수
-//		if(lost == 2) { // 전체 게시물
-//			listCnt= boardService.getBoardListCnt();
-//		}
-//		else if(lost==1) { // Found 게시물
-//			listCnt= boardService.getBoardListFoundCnt();
-//		}
-//		else if(lost==0) {  // Lost 게시물
-//			listCnt= boardService.getBoardListLostCnt();
-//		}
-//		
-//
-//		// Pagination 객체생성
-//		Pagination pagination = new Pagination();
-//		pagination.pageInfo(page, range, listCnt, lost);
-//		model.addAttribute("pagination", pagination);
-//		
-//		if(lost == 2) {
-//			model.addAttribute("list", boardService.getBoardList(pagination));
-//		}
-//		else if(lost==1) {
-//			model.addAttribute("list", boardService.getBoardListFound(pagination));
-//		}
-//		else if(lost==0) {
-//			model.addAttribute("list", boardService.getBoardListLost(pagination));
-//		}
+	public String boardlist(Model model) {
 		model.addAttribute("list", boardService.getBoardList());
 		return "list";
 	}

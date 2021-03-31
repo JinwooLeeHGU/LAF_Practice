@@ -16,26 +16,25 @@
 	<resources mapping="/resources/**" location="/resources/" />
 	<resources mapping="/upload/**" location="/resources/upload/" />
 	
-	<beans:bean id="LoginCheckInterceptor"
-		class="com.gls.laf.user.LoginCheckInterceptor">
-	</beans:bean>
-	
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- 	<beans:bean id="LoginCheckInterceptor"
+		class="com.gls.laf.user.LoginCheckInterceptor">
+	</beans:bean> -->
 	
-	<interceptors>
+	<!-- <interceptors>
 		<interceptor>
 			<mapping path="/**" />
-			<!-- <exclude-mapping path="/resources/**" />
-			<exclude-mapping path="/img/**" /> -->
-			<!-- <exclude-mapping path="/login/*" / -->
+			<exclude-mapping path="/resources/**" />
+			<exclude-mapping path="/img/**" />
+			<exclude-mapping path="/login/*" /
 			<beans:ref bean="LoginCheckInterceptor" />
 		</interceptor>
-	</interceptors>
+	</interceptors> -->
 	
 		<beans:bean id="googleConnectionFactory"
 		class="org.springframework.social.google.connect.GoogleConnectionFactory">

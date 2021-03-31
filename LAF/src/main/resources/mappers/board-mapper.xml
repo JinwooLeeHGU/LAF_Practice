@@ -29,8 +29,8 @@
 			* 
 		FROM 
 			LF_Product_Test 
- 		LIMIT
-			#{startList}, #{listSize}
+ 		<!-- LIMIT
+			#{startList}, #{listSize} -->
 			
 	    <!-- ORDER by seq DESC -->
 		
