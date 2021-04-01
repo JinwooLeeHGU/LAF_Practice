@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,14 +18,10 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-<link rel="stylesheet" href="${path}/resouces/css/liststyle.css">
+<link rel="stylesheet" href="${path}/resources/css/liststyle.css">
+
 </head>
 <body>
-	<span id="name"> </span>
-
-	<span class="username"> welcome <strong>
-			${login.username} </strong>
-	</span>
 
 	<%@include file="./modules/header.jsp"%>
 	<%@include file="./modules/navbar.jsp"%>
@@ -34,9 +32,9 @@
 			<div class="card">
 				<div class="seq">${u.seq}</div>
 				<div class="image">
-
+				<c:out value="${path}" />
 					<img
-						src="${pageContext.request.contextPath}/resources/upload/${u.photourl}"
+						src="${path}/resources/upload/${u.photourl}"
 						style="box-sizing: border-box; width: 100%; height: 230px" />
 				</div>
 				<div class="description">
@@ -55,16 +53,12 @@
 					</script>
 
 					<span class="title">${u.title}</span>
-
 					<div class="name">카테고리 : ${u.category}</div>
-
 					<div class="price">작성자 : ${u.writer}</div>
-
 					<div class="other" style="box-sizing: border-box; height: 50px;">비고
 						: ${u.content}</div>
 
 					<div class="regdate">작성일자 : ${u.regdate}</div>
-
 					<div id="buttonArea">
 						<div id="editButton">
 							<a id="fontcolor" href="editform/${u.seq}">Edit</a>
@@ -74,9 +68,7 @@
 							<a id="fontcolor" href="javascript:delete_ok('${u.seq}')">Delete</a>
 						</div>
 					</div>
-
 				</div>
-
 			</div>
 		</c:forEach>
 	</table>

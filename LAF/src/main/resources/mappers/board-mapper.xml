@@ -29,6 +29,7 @@
 			* 
 		FROM 
 			LF_Product_Test 
+		ORDER by seq DESC
  		<!-- LIMIT
 			#{startList}, #{listSize} -->
 			
@@ -69,7 +70,6 @@
 			LF_Product_Test
 			
 			<!-- 전체 글의 개수를 읽어와 전체 페이지의 수를 개산해야한다. 따라서 전체 글의 개수를 읽어 오는 SQL문을 추가 다 -->
-
 	</select>
 	
 	<!-- <select id="getBoardListFoundCnt" resultType="int">
