@@ -21,6 +21,9 @@ public class BoardVO implements Serializable{
 	private String photourl;  // 파일인 경우 파일 경로 / 인터넷 상의 사진인 경우 url
 	private MultipartFile photofile;
 	private int cnt;
+	
+
+
 	public int getSeq() {
 		return seq;
 	}

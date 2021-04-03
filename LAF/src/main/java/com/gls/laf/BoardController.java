@@ -1,13 +1,24 @@
 package com.gls.laf;
 
+import java.io.File;
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gls.laf.board.BoardService;
-
+import com.gls.laf.board.BoardVO;
+import com.gls.laf.file.FileUtil;
 
 @Controller
 @RequestMapping(value = "/board")
@@ -18,15 +29,36 @@ public class BoardController {
 	@Autowired
 	BoardService boardService;
 
-
 //	@RequestMapping(value = "/mylist", method = RequestMethod.GET)
 //	public String mylist() {
 //		return "mylist";
 //	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String boardlist(Model model) {
-		model.addAttribute("list", boardService.getBoardList());
+	public String boardlist(Model model, @RequestParam(required = false, defaultValue = "2") int lost)
+			throws Exception {
+
+		int listCnt = 2;
+
+		// 전체 게시글 개수
+		if (lost == 2) { // 전체 게시물
+			listCnt = boardService.getBoardListCnt();
+		} else if (lost == 1) { // Found 게시물
+			listCnt = boardService.getBoardListFoundCnt();
+		} else if (lost == 0) { // Lost 게시물
+			listCnt = boardService.getBoardListLostCnt();
+		}
+
+//		model.addAttribute("list", boardService.getBoardList());
+		if(lost == 2) {
+			model.addAttribute("list", boardService.getBoardList());
+		}
+		else if(lost==1) {
+			model.addAttribute("list", boardService.getBoardListFound());
+		}
+		else if(lost==0) {
+			model.addAttribute("list", boardService.getBoardListLost());
+		}
 		return "list";
 	}
 
@@ -75,7 +107,6 @@ public class BoardController {
 //		return "list_lost";
 //	}
 
-	/*
 	@RequestMapping(value = "/my_page", method = RequestMethod.GET)
 	public String myPage() {
 		return "my_page";
@@ -171,7 +202,6 @@ public class BoardController {
 
 		else {
 			System.out.println("데이터 수정 성공!!!");
-
 		}
 
 		return "redirect:list";
@@ -188,6 +218,6 @@ public class BoardController {
 		}
 
 		return "redirect:../list";
-	}  */
+	}
 
-}       
+}

@@ -21,6 +21,13 @@
 <link rel="stylesheet" href="${path}/resources/css/liststyle.css">
 
 </head>
+<script>
+	function delete_ok(id) {
+		var a = confirm("정말로 삭제하겠습니까?");
+		if (a)
+			location.href = 'deleteok/' + id;
+	}
+</script>
 <body>
 
 	<%@include file="./modules/header.jsp"%>
@@ -32,9 +39,7 @@
 			<div class="card">
 				<div class="seq">${u.seq}</div>
 				<div class="image">
-				<c:out value="${path}" />
-					<img
-						src="${path}/resources/upload/${u.photourl}"
+					<img src="${path}/resources/upload/${u.photourl}"
 						style="box-sizing: border-box; width: 100%; height: 230px" />
 				</div>
 				<div class="description">
@@ -63,7 +68,6 @@
 						<div id="editButton">
 							<a id="fontcolor" href="editform/${u.seq}">Edit</a>
 						</div>
-
 						<div id="deleteButton">
 							<a id="fontcolor" href="javascript:delete_ok('${u.seq}')">Delete</a>
 						</div>

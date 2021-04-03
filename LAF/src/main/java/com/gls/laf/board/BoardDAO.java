@@ -44,28 +44,28 @@ public class BoardDAO {
 //	public List<BoardVO> getBoardList(Pagination pagination) {
 //		return sqlSession.selectList("Board.getBoardList", pagination);
 //	}
-//	
-//	public List<BoardVO> getBoardListFound(Pagination pagination) {
-//		return sqlSession.selectList("Board.getBoardListFound", pagination);
-//	}
-//	
-//	public List<BoardVO> getBoardListLost(Pagination pagination) {
-//		return sqlSession.selectList("Board.getBoardListLost", pagination);
-//	}
+	
+	public List<BoardVO> getBoardListFound() {
+		return sqlSession.selectList("Board.getBoardListFound");
+	}
+	
+	public List<BoardVO> getBoardListLost() {
+		return sqlSession.selectList("Board.getBoardListLost");
+	}
 
 //	// 전체 글의 개수 리턴
-//	public int getBoardListCnt() { // throws Exception {
-//		return sqlSession.selectOne("Board.getBoardListCnt");
-//	}
+	public int getBoardListCnt() { // throws Exception {
+		return sqlSession.selectOne("Board.getBoardListCnt");
+	}
 
 //	// 전체 글의 개수 리턴
-//	public int getBoardListFoundCnt() { // throws Exception {
-//		return sqlSession.selectOne("Board.getBoardListFoundCnt");
-//	}
+	public int getBoardListFoundCnt() { // throws Exception {
+		return sqlSession.selectOne("Board.getBoardListFoundCnt");
+	}
 //
 //	// 전체 글의 개수 리턴
-//	public int getBoardListLostCnt() { // throws Exception {
-//		return sqlSession.selectOne("Board.getBoardListLostCnt");
-//	}
+	public int getBoardListLostCnt() { // throws Exception {
+		return sqlSession.selectOne("Board.getBoardListLostCnt");
+	}
 
 }
