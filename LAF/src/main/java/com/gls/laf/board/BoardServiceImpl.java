@@ -33,24 +33,18 @@ public class BoardServiceImpl implements BoardService{
 	}
 	
 	@Override
-	public List<BoardVO> getBoardList() {
-		return boardDAO.getBoardList();
-	}
-	
-	
-//	@Override
-//	public List<BoardVO> getBoardList(Pagination pagination) {
-//		return boardDAO.getBoardList(pagination);
-////	}
-//	
-	@Override
-	public List<BoardVO> getBoardListFound() {
-		return boardDAO.getBoardListFound();
+	public List<BoardVO> getBoardList(Pagination pagination) {
+		return boardDAO.getBoardList(pagination);
 	}
 	
 	@Override
-	public List<BoardVO> getBoardListLost() {
-		return boardDAO.getBoardListLost();
+	public List<BoardVO> getBoardListFound(Pagination pagination) {
+		return boardDAO.getBoardListFound(pagination);
+	}
+	
+	@Override
+	public List<BoardVO> getBoardListLost(Pagination pagination) {
+		return boardDAO.getBoardListLost(pagination);
 	}
 	
 	@Override

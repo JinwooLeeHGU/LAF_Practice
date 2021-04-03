@@ -33,25 +33,18 @@ public class BoardDAO {
 		return sqlSession.selectOne("Board.getBoard", seq);
 	}
 
-	public List<BoardVO> getBoardList() {
-		return sqlSession.selectList("Board.getBoardList");
+	public List<BoardVO> getBoardList(Pagination pagination) {
+		return sqlSession.selectList("Board.getBoardList", pagination);
 	}
 	
-//	public List<BoardVO> getBoardList() {
-//		return sqlSession.selectList("Board.getBoardList", pagination);
-//	}
-	
-//	public List<BoardVO> getBoardList(Pagination pagination) {
-//		return sqlSession.selectList("Board.getBoardList", pagination);
-//	}
-	
-	public List<BoardVO> getBoardListFound() {
-		return sqlSession.selectList("Board.getBoardListFound");
+	public List<BoardVO> getBoardListFound(Pagination pagination) {
+		return sqlSession.selectList("Board.getBoardListFound", pagination);
 	}
 	
-	public List<BoardVO> getBoardListLost() {
-		return sqlSession.selectList("Board.getBoardListLost");
+	public List<BoardVO> getBoardListLost(Pagination pagination) {
+		return sqlSession.selectList("Board.getBoardListLost", pagination);
 	}
+	
 
 //	// 전체 글의 개수 리턴
 	public int getBoardListCnt() { // throws Exception {

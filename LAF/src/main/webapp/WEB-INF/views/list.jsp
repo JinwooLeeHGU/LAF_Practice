@@ -27,6 +27,40 @@
 		if (a)
 			location.href = 'deleteok/' + id;
 	}
+
+	//이전 버튼 이벤트
+	  function fn_prev(page, range, rangeSize) {
+	    var page = ((range - 2) * rangeSize) + 1;
+	    var range = range - 1;
+
+	    var url = "${pageContext.request.contextPath}/board/list";
+	    url = url + "?page=" + page;
+	    url = url + "&range=" + range;
+
+	    location.href = url;
+	  }
+
+	  //페이지 번호 클릭
+	  function fn_pagination(page, range, rangeSize, searchType, keyword) {
+	    var url = "${pageContext.request.contextPath}/board/list"
+	    url = url + "?page=" + page;
+	    url = url + "&range=" + range;
+
+	    location.href = url;
+	  }
+
+	  //다음 버튼 이벤트
+	  function fn_next(page, range, rangeSize) {
+	    var page = parseInt((range * rangeSize)) + 1;
+	    var range = parseInt(range) + 1;
+
+	    var url = "${pageContext.request.contextPath}/board/list";
+	    url = url + "?page=" + page;
+	    url = url + "&range=" + range;
+
+	    location.href = url; 
+	  }
+	
 </script>
 <body>
 
@@ -39,43 +73,75 @@
 			<div class="card">
 				<div class="seq">${u.seq}</div>
 				<div class="image">
-					<img src="${path}/resources/upload/${u.photourl}"
+
+					<img
+						src="${pageContext.request.contextPath}/resources/upload/${u.photourl}"
 						style="box-sizing: border-box; width: 100%; height: 230px" />
 				</div>
 				<div class="description">
 
 					<script>
-						var lf = $
-						{
-							u.lost
-						};
-						if (lf)
-							document
-									.write('<span style="background-color:#CBECBB; padding:1.5px 3px; border-radius: 3px;">Found</span>');
-						else
-							document
-									.write('<span style="background-color:#F1CBC2; padding:1.5px 3px; border-radius: 3px;">Lost</span>');
-					</script>
+            var lf = ${u.lost};
+            if (lf)
+              document.write('<span style="background-color:#CBECBB; padding:1.5px 3px; border-radius: 3px;">Found</span>');
+            else
+              document.write('<span style="background-color:#F1CBC2; padding:1.5px 3px; border-radius: 3px;">Lost</span>');
+          </script>
 
 					<span class="title">${u.title}</span>
-					<div class="name">카테고리 : ${u.category}</div>
-					<div class="price">작성자 : ${u.writer}</div>
+					
+					<div class="name">상품명 : ${u.category}</div>
+
+					<div class="price">가격 : ${u.writer}</div>
+
 					<div class="other" style="box-sizing: border-box; height: 50px;">비고
 						: ${u.content}</div>
 
 					<div class="regdate">작성일자 : ${u.regdate}</div>
+
 					<div id="buttonArea">
 						<div id="editButton">
 							<a id="fontcolor" href="editform/${u.seq}">Edit</a>
 						</div>
+
 						<div id="deleteButton">
 							<a id="fontcolor" href="javascript:delete_ok('${u.seq}')">Delete</a>
 						</div>
+
 					</div>
+
 				</div>
+
+
 			</div>
 		</c:forEach>
 	</table>
+	<br>
+	
+	<div id="paginationBox"  align="center"">
+		<ul class="pagination">
+			<c:if test="${pagination.prev}">
+				<li class="page-item"><a class="page-link" href="#"
+					onClick="fn_prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">Previous</a></li>
+			</c:if>
+
+
+			<c:forEach begin="${pagination.startPage}"
+				end="${pagination.endPage}" var="idx">
+				<li
+					class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> "><a
+					class="page-link" href="#"
+					onClick="fn_pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}')">
+						${idx} </a></li>
+			</c:forEach>
+
+			<c:if test="${pagination.next}">
+				<li class="page-item"><a class="page-link" href="#"
+					onClick="fn_next('${pagination.range}', '${pagination.range}', '${pagination.rangeSize}')">Next</a></li>
+			</c:if>
+		</ul>
+	</div>
+	
 	<br>
 	<%@include file="./modules/footer.jsp"%>
 </body>
