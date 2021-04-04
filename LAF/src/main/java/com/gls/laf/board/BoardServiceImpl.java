@@ -33,8 +33,8 @@ public class BoardServiceImpl implements BoardService{
 	}
 	
 	@Override
-	public List<BoardVO> getBoardList(Pagination pagination) {
-		return boardDAO.getBoardList(pagination);
+	public List<BoardVO> getBoardList(Search search) {
+		return boardDAO.getBoardList(search);
 	}
 	
 	@Override
@@ -48,8 +48,8 @@ public class BoardServiceImpl implements BoardService{
 	}
 	
 	@Override
-	public int getBoardListCnt() { // throws Exception {
-		return boardDAO.getBoardListCnt();
+	public int getBoardListCnt(Search search) { // throws Exception {
+		return boardDAO.getBoardListCnt(search);
 	}
 	
 	@Override

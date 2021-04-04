@@ -124,7 +124,7 @@ link href ="https: //cdn.jsdelivr.net /npm /bootstrap @5.0.0-beta1 /dist
 		</div>
 
 		<div style="float: left; overflow: hidden; margin-top: 20px;"
-			OnClick="location.href ='http://localhost:8080/winter/board/list'">
+			OnClick="location.href ='http://localhost:8080/laf/board/list'">
 			<!-- <a href="https://www.cetizen.com"><img
 				src="https://image2.cetizen.com/CDN/webimage/2007_cetizen/community/topmenu_logo_n.png"
 				alt="세티즌 로고 클릭시 홈으로 이동" title="세티즌 로고"

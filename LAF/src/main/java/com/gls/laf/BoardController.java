@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.gls.laf.board.BoardService;
 import com.gls.laf.board.BoardVO;
 import com.gls.laf.board.Pagination;
+import com.gls.laf.board.Search;
 import com.gls.laf.file.FileUtil;
 
 @Controller
@@ -38,43 +39,46 @@ public class BoardController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String boardlist(Model model, 
 			@RequestParam(required = false, defaultValue = "1") int page,
-			@RequestParam(required = false, defaultValue = "1") int range,
-			@RequestParam(required = false, defaultValue = "2") int lost)
-			throws Exception {
-		
-		// 페이징 계산을 위해 Pagination 클래스에 보내야 할 파라미터에는 '현재 페이지'와 '현재 페이지 범위', 그리고 '게시물의 총
-				// 개수'가 있다.
-				// lost의 경우 2가 all / 1이 found / 0이 lost이다.
+			@RequestParam(required = false, defaultValue = "1") int range, 
+			@RequestParam(required = false, defaultValue = "2") int lost,
+			@RequestParam(required = false, defaultValue = "title") String searchType,
+			@RequestParam(required = false) String keyword ) throws Exception {
 
+		// 페이징 계산을 위해 Pagination 클래스에 보내야 할 파라미터에는 '현재 페이지'와 '현재 페이지 범위', 그리고 '게시물의 총
+		// 개수'가 있다.
+		// lost의 경우 2가 all / 1이 found / 0이 lost이다.
+
+		Search search = new Search();
+		search.setSearchType(searchType);
+		search.setKeyword(keyword);
 		int listCnt = 2;
 
 		// 전체 게시글 개수
 		if (lost == 2) { // 전체 게시물
-			listCnt = boardService.getBoardListCnt();
+			listCnt = boardService.getBoardListCnt(search);
 		} else if (lost == 1) { // Found 게시물
 			listCnt = boardService.getBoardListFoundCnt();
 		} else if (lost == 0) { // Lost 게시물
 			listCnt = boardService.getBoardListLostCnt();
 		}
-		
+
+		search.pageInfo(page, range, listCnt, lost);
+
 		// Pagination 객체생성
-				Pagination pagination = new Pagination();
-				pagination.pageInfo(page, range, listCnt, lost);
-				model.addAttribute("pagination", pagination);
+		Pagination pagination = new Pagination();
+		pagination.pageInfo(page, range, listCnt, lost);
+		model.addAttribute("pagination", pagination);
 
 //		model.addAttribute("list", boardService.getBoardList());
-		if(lost == 2) {
-			model.addAttribute("list", boardService.getBoardList(pagination));
-		}
-		else if(lost==1) {
+		if (lost == 2) {
+			model.addAttribute("list", boardService.getBoardList(search));
+		} else if (lost == 1) {
 			model.addAttribute("list", boardService.getBoardListFound(pagination));
-		}
-		else if(lost==0) {
+		} else if (lost == 0) {
 			model.addAttribute("list", boardService.getBoardListLost(pagination));
 		}
 		return "list";
 	}
-
 
 	@RequestMapping(value = "/my_page", method = RequestMethod.GET)
 	public String myPage() {
@@ -140,8 +144,6 @@ public class BoardController {
 				e.printStackTrace();
 			}
 		}
-
-		
 
 		if (boardService.insertBoard(vo) == 0) {
 			System.out.println("데이터 추가 실패");

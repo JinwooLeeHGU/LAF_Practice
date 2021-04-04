@@ -47,8 +47,8 @@ public class BoardDAO {
 	
 
 //	// 전체 글의 개수 리턴
-	public int getBoardListCnt() { // throws Exception {
-		return sqlSession.selectOne("Board.getBoardListCnt");
+	public int getBoardListCnt(Search search) { // throws Exception {
+		return sqlSession.selectOne("Board.getBoardListCnt", search);
 	}
 
 //	// 전체 글의 개수 리턴

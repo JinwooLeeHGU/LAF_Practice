@@ -30,12 +30,30 @@
 	</select>
 
 	<select id="getBoardList" resultType="board">
-		SELECT
-		*
-		FROM
-		LF_Product_Test
-		LIMIT
-		#{startList}, #{listSize}
+		SELECT 
+			* 
+		FROM 
+			LF_Product_Test 
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="searchType=='all' and keyword!=null and keyword!=''">
+				AND TITLE like CONCAT('%', #{keyword}, '%')
+				OR
+				CONTENT like CONCAT('%', #{keyword}, '%')
+				OR
+				WRITER like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType=='title' and keyword!=null and keyword!=''">
+				AND TITLE like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType=='content' and keyword != null and keyword != '' ">
+				AND CONTENT like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType=='writer' and keyword != null and keyword != '' ">
+				AND WRITER like CONCAT('%', #{keyword}, '%')
+			</if>
+		</trim>
+ 		LIMIT
+			#{startList}, #{listSize}
 
 		<!-- ORDER by seq DESC -->
 

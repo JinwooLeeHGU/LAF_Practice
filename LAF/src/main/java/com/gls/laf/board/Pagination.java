@@ -5,16 +5,16 @@ public class Pagination {
 	
 	private int listSize = 8;   // 초기값으로 목록개수를 10으로 셋팅  (한 페이지 당 보여질 게시물개수) 
 	private int rangeSize = 5;  // 초기값으로 페이지범위를 10으로 셋팅 
-	private int page;        // 현재 목록의 페이지 번호
-	private int range;       // 화면에 보이는 페이지의 범위의 시작 번호
-	private int listCnt;     // 전체 게시물의 개수
-	private int pageCnt;     // 전체 페이지 범위의 개수
-	private int startPage;   // 범위 내 시작 페이지
-	private int startList;   // 게시판 시작 번호
+	private int page;        // 현재 목록의 페이지 번호 
+	private int range;       // 화면에 보이는 페이지의 범위의 시작 번호 
+	private int listCnt;     // 전체 게시물의 개수 
+	private int pageCnt;     // 전체 페이지 범위의 개수 
+	private int startPage;   // 범위 내 시작 페이지 
+	private int startList;   // 게시판 시작 번호 
 	private int endPage;     // 범위 내 끝 페이지 
-	private int lost;        // 1 - found / 0 - lost
-	private boolean prev;    // 이전 페이지
-	private boolean next;    // 다음 페이지
+	private int lost;        // 1 - found / 0 - lost 
+	private boolean prev;    // 이전 페이지 
+	private boolean next;    // 다음 페이지 
 
 	public int getRangeSize() {
 		return rangeSize;
