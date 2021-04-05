@@ -51,6 +51,7 @@ public class BoardController {
 		Search search = new Search();
 		search.setSearchType(searchType);
 		search.setKeyword(keyword);
+		
 		int listCnt = 2;
 
 		// 전체 게시글 개수

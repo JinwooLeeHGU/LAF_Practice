@@ -30,67 +30,100 @@
 	</select>
 
 	<select id="getBoardList" resultType="board">
-		SELECT 
-			* 
-		FROM 
-			LF_Product_Test 
+		SELECT
+		*
+		FROM
+		LF_Product_Test
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
 			<if test="searchType=='all' and keyword!=null and keyword!=''">
 				AND TITLE like CONCAT('%', #{keyword}, '%')
 				OR
-				CONTENT like CONCAT('%', #{keyword}, '%')
+				CONTENT like
+				CONCAT('%', #{keyword}, '%')
 				OR
-				WRITER like CONCAT('%', #{keyword}, '%')
+				WRITER like CONCAT('%', #{keyword},
+				'%')
 			</if>
 			<if test="searchType=='title' and keyword!=null and keyword!=''">
 				AND TITLE like CONCAT('%', #{keyword}, '%')
 			</if>
-			<if test="searchType=='content' and keyword != null and keyword != '' ">
+			<if
+				test="searchType=='content' and keyword != null and keyword != '' ">
 				AND CONTENT like CONCAT('%', #{keyword}, '%')
 			</if>
-			<if test="searchType=='writer' and keyword != null and keyword != '' ">
+			<if
+				test="searchType=='writer' and keyword != null and keyword != '' ">
 				AND WRITER like CONCAT('%', #{keyword}, '%')
 			</if>
 		</trim>
- 		LIMIT
-			#{startList}, #{listSize}
+		LIMIT
+		#{startList}, #{listSize}
 
 		<!-- ORDER by seq DESC -->
 
 	</select>
 
 	<select id="getBoardListFound" resultType="board">
-		SELECT 
-			* 
-		FROM 
-			LF_Product_Test 
-	    WHERE
-	    	lost=1
+		SELECT
+		*
+		FROM
+		LF_Product_Test
+		WHERE
+		lost=1
 		LIMIT
-			#{startList}, #{listSize}
-			
+		#{startList}, #{listSize}
+
 		<!-- order by seq desc -->
 	</select>
 
 	<select id="getBoardListLost" resultType="board">
-		SELECT 
-			* 
-		FROM 
-			LF_Product_Test 
+		SELECT
+		*
+		FROM
+		LF_Product_Test
 		WHERE
-	    	lost=0
+		lost=0
 		LIMIT
-			#{startList}, #{listSize}
-		
+		#{startList}, #{listSize}
+
 	</select>
 
 	<select id="getBoardListCnt" resultType="int">
 		SELECT
-			COUNT(*) as listCnt <!-- 글(row)을 얻어올 때는 count() 라는 함수를 사용 -->
+		COUNT(*) as listCnt <!-- 글(row)을 얻어올 때는 count() 라는 함수를 사용 -->
+		
 		FROM
-			LF_Product_Test
-			
-			<!-- 전체 글의 개수를 읽어와 전체 페이지의 수를 개산해야한다. 따라서 전체 글의 개수를 읽어 오는 SQL문을 추가 다 -->
+		LF_Product_Test
+		
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="searchType=='all' and keyword!=null and keyword!=''">
+				AND TITLE like CONCAT('%', #{keyword}, '%')
+				OR
+				CONTENT like
+				CONCAT('%', #{keyword}, '%')
+				OR
+				WRITER like CONCAT('%', #{keyword},
+				'%')
+			</if>
+			<if test="searchType=='title' and keyword!=null and keyword!=''">
+				AND TITLE like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if
+				test="searchType=='content' and keyword != null and keyword != '' ">
+				AND CONTENT like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if
+				test="searchType=='writer' and keyword != null and keyword != '' ">
+				AND WRITER like CONCAT('%', #{keyword}, '%')
+			</if>
+		</trim>
+		
+		
+
+
+
+
+		<!-- 전체 글의 개수를 읽어와 전체 페이지의 수를 개산해야한다. 따라서 전체 글의 개수를 읽어 오는 SQL문을 추가 다 -->
 	</select>
 
 	<select id="getBoardListFoundCnt" resultType="int">
