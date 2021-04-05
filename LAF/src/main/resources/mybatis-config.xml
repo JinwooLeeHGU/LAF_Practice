@@ -3,6 +3,6 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="board" type="com.gls.laf.board.BoardVO" />
-		<!-- <typeAlias alias="user" type="com.gls.laf.user.UserVO" /> -->
+		<typeAlias alias="user" type="com.gls.laf.user.UserVO" />
 	</typeAliases>
 </configuration>
